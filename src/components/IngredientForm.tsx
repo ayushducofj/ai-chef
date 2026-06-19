@@ -1,7 +1,7 @@
 import React from "react";
 import DisplayIngredients from "./DisplayIngredients";
 import { useErrorManagement } from "../hooks/useErrorManagement";
-
+import clsx from "clsx";
 
 export default function IngredientForm({ ingredients, setIngredients }: { ingredients: string[]; setIngredients: React.Dispatch<React.SetStateAction<string[]>> }) {
     // application state will be stored here, where the form is.
@@ -44,7 +44,12 @@ export default function IngredientForm({ ingredients, setIngredients }: { ingred
                 <form action={handleSubmit}>
                     <div className="flex md:flex-row flex-col gap-2">
                         <input className="flex-1 border border-gray-400 rounded py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" name="ingredients" />
-                        <button className="bg-slate-900 hover:bg-slate-700 hover:cursor-pointer  text-white py-2 px-4 rounded" aria-label="Submit" type="submit">Add Ingredient</button>
+                        <button className= {
+                            clsx("bg-slate-900 hover:bg-slate-700 hover:cursor-pointer  text-white py-2 px-4 rounded", 
+                            ingredients.length >= 6 && "opacity-50 cursor-not-allowed disabled"
+                            )} aria-label="Submit" type="submit">
+                            Add Ingredient
+                        </button>
                     </div>
                 </form>
                 {error && <p className="text-red-500 text-sm sm:text-lg rounded-xl mt-2 text-center p-2">{error}</p>}

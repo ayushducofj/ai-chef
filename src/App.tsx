@@ -1,4 +1,4 @@
-import Landing from "./components/Landing";
+import Landing from "./components/MainPage";
 
 export default function App() {
   return (

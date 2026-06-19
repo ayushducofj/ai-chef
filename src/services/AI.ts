@@ -12,8 +12,7 @@ export async function chat(messages: { role: string; content: string }[], model:
             body: JSON.stringify({
                 model,
                 messages,
-                temperature: 0.7,
-                max_tokens: 800,
+                temperature: 0.7
             }),
         }
     );
