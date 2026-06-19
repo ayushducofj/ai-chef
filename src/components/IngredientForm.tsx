@@ -1,12 +1,11 @@
-import { useState } from "react";
+import React from "react";
 import DisplayIngredients from "./DisplayIngredients";
 import { useErrorManagement } from "../hooks/useErrorManagement";
 
 
-export default function IngredientForm() {
+export default function IngredientForm({ ingredients, setIngredients }: { ingredients: string[]; setIngredients: React.Dispatch<React.SetStateAction<string[]>> }) {
     // application state will be stored here, where the form is.
 
-    const [ingredients, setIngredients] = useState<string[]>([]);
     const { error, setError, clearError } = useErrorManagement();
 
     function handleSubmit(formData: FormData) {
@@ -22,7 +21,7 @@ export default function IngredientForm() {
             // we want to have accurate error messages
             // and fallback on max ingredients error if everything else is fine
             // but limit = reached.
-            if(ingredients.length >= 6) {
+            if (ingredients.length >= 6) {
                 setError("Maximum number of ingredients reached");
                 return;
             }
@@ -40,9 +39,7 @@ export default function IngredientForm() {
     }
 
     return (
-
         <>
-
             <div className="max-w-2xl w-full p-6 rounded-lg">
                 <form action={handleSubmit}>
                     <div className="flex md:flex-row flex-col gap-2">
@@ -57,9 +54,7 @@ export default function IngredientForm() {
                 {ingredients.length > 0 && <DisplayIngredients ingredients={ingredients} />}
 
 
-                {ingredients.length >= 4 && <button className="hover:bg-blue-600 hover:cursor-pointer bg-blue-500 text-white py-2 px-4 rounded mt-4">Generate Recipes</button>}
             </div>
-
         </>
     )
 }
