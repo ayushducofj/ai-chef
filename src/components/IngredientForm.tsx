@@ -19,6 +19,13 @@ export default function IngredientForm() {
 
     function handleSetIngredients(newIngredients: string[]) {
         if (newIngredients.length === 0) {
+            // we want to have accurate error messages
+            // and fallback on max ingredients error if everything else is fine
+            // but limit = reached.
+            if(ingredients.length >= 6) {
+                setError("Maximum number of ingredients reached");
+                return;
+            }
             setError("Ingredient cannot be empty");
             return
         }
@@ -35,7 +42,6 @@ export default function IngredientForm() {
     return (
 
         <>
-            {error && <p className="text-red-500 text-sm sm:text-lg rounded-xl mt-2 text-center border border-red-500 bg-red-100 p-2">{error}</p>}
 
             <div className="max-w-2xl w-full p-6 rounded-lg">
                 <form action={handleSubmit}>
@@ -44,7 +50,7 @@ export default function IngredientForm() {
                         <button className="bg-slate-900 hover:bg-slate-700 hover:cursor-pointer  text-white py-2 px-4 rounded" aria-label="Submit" type="submit">Add Ingredient</button>
                     </div>
                 </form>
-
+                {error && <p className="text-red-500 text-sm sm:text-lg rounded-xl mt-2 text-center p-2">{error}</p>}
 
 
                 {/* Display the list of ingredients if there are any */}
