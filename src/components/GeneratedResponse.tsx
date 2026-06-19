@@ -19,7 +19,7 @@ export default function GeneratedResponse(props: any) {
                 props.response &&
                 <button 
                     className="hover:bg-slate-600 bg-slate-500 my-5 sm:w-md hover:cursor-pointer text-white py-2 px-4 rounded mt-4" 
-                    onClick={()=>{location.reload}}>
+                    onClick={()=>{location.reload()}}>
                         Reset Application
                 </button>
             }
